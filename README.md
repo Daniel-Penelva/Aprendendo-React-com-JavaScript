@@ -149,3 +149,93 @@ export default App;
 Neste exemplo, o componente `MeuComponente` é usado dentro do componente `App`.
 
 Essas são as noções básicas sobre componentes no React. Eles desempenham um papel fundamental na criação de interfaces de usuário dinâmicas e reutilizáveis em aplicativos React. À medida que você se aprofunda no React, pode explorar mais recursos, como estados, ciclos de vida dos componentes e hooks para criar componentes mais avançados e interativos.
+
+## Props no React
+
+As props (abreviação de "propriedades") são um conceito fundamental no React. Elas são usadas para passar dados de um componente pai para um componente filho. As props permitem que você configure e personalize componentes filhos e tornem sua interface mais flexível e reutilizável. Aqui estão as principais características e como usar props no React:
+
+## Características das Props no React:
+
+1. **Passagem de Dados**: As props permitem que você passe dados de um componente pai para um componente filho. Isso é fundamental para compartilhar informações entre diferentes partes da sua aplicação.
+
+2. **Somente Leitura**: As props são somente leitura (read-only) dentro do componente filho. Isso significa que o componente filho não pode modificar as props que recebe do pai. Elas são consideradas imutáveis no contexto do componente filho.
+
+3. **Personalização**: As props são usadas para personalizar a renderização e o comportamento do componente filho com base nas necessidades do componente pai. Isso torna os componentes mais flexíveis e reutilizáveis.
+
+## Como passar props para um componente:
+
+Aqui está um exemplo de como passar props para um componente React:
+
+```jsx
+// Componente pai
+import React from 'react';
+import MeuComponente from './MeuComponente';
+
+function App() {
+  return (
+    <div>
+      <h1>Meu Aplicativo React</h1>
+      <MeuComponente texto="Olá, Mundo!" />
+    </div>
+  );
+}
+
+export default App;
+```
+
+No exemplo acima, o componente `App` está passando uma prop chamada `texto` para o componente `MeuComponente`.
+
+## Como acessar props dentro de um componente:
+
+Dentro do componente filho (`MeuComponente`, no exemplo acima), você pode acessar as props usando o objeto `props`. Por exemplo:
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  return <div>{props.texto}</div>;
+}
+
+export default MeuComponente;
+```
+
+No componente filho, estamos acessando a prop `texto` usando `props.texto` e renderizando seu valor.
+
+## Passando múltiplas props:
+
+Você pode passar quantas props forem necessárias para um componente. Basta adicioná-las como atributos quando você utiliza o componente:
+
+```jsx
+<MeuComponente texto="Olá, Mundo!" cor="azul" tamanho={16} />
+```
+
+No exemplo acima, estamos passando três props diferentes: `texto`, `cor`, e `tamanho`.
+
+## Props padrão (Default Props):
+
+Você também pode definir valores padrão para props usando a propriedade `defaultProps`. Isso é útil quando você deseja que um componente funcione corretamente, mesmo se algumas props não forem fornecidas:
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  return (
+    <div>
+      <p>{props.texto}</p>
+      <p>Cor: {props.cor}</p>
+      <p>Tamanho: {props.tamanho}</p>
+    </div>
+  );
+}
+
+MeuComponente.defaultProps = {
+  cor: 'preto',
+  tamanho: 12,
+};
+
+export default MeuComponente;
+```
+
+Neste exemplo, definimos valores padrão para as props `cor` e `tamanho`, para que sejam usadas se não forem fornecidas.
+
+As props são um dos conceitos fundamentais do React e desempenham um papel crucial na criação de componentes reutilizáveis e flexíveis, permitindo a personalização da interface do usuário com base nos dados fornecidos pelo componente pai.
