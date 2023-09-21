@@ -239,3 +239,56 @@ export default MeuComponente;
 Neste exemplo, definimos valores padrão para as props `cor` e `tamanho`, para que sejam usadas se não forem fornecidas.
 
 As props são um dos conceitos fundamentais do React e desempenham um papel crucial na criação de componentes reutilizáveis e flexíveis, permitindo a personalização da interface do usuário com base nos dados fornecidos pelo componente pai.
+
+## CSS Modules
+O CSS Modules é uma abordagem para escrever estilos CSS em aplicativos React (e em outros tipos de projetos JavaScript) que permite o escopo local de estilos, tornando mais fácil evitar conflitos de nomes de classe e facilitando a manutenção de estilos em projetos grandes. Ele é especialmente útil quando você deseja que os estilos de um componente não afetem inadvertidamente outros componentes.
+
+Características e como usar o CSS Modules em React:
+
+## Características do CSS Modules:
+
+1. **Escopo local**: Os estilos definidos em um arquivo CSS Module são automaticamente escopados para o componente ou módulo em que são importados. Isso significa que os nomes de classe definidos em um módulo não entram em conflito com os nomes de classe de outros módulos ou componentes.
+
+2. **Isolamento de estilos**: O CSS Modules permite que você isole os estilos de cada componente, facilitando a manutenção e evitando vazamentos de estilos para outros componentes.
+
+3. **Uso semântico de nomes de classe**: Você pode usar nomes de classe significativos e semânticos em seus estilos, em vez de se preocupar com a colisão de nomes de classe globalmente.
+
+4. **Autogeração de nomes de classe exclusivos**: O CSS Modules normalmente gera automaticamente nomes de classe únicos para cada estilo definido, o que elimina a necessidade de criar nomes de classe manualmente.
+
+## Como usar o CSS Modules em React:
+
+1. **Configuração**: Para começar a usar o CSS Modules em um projeto React, você deve configurar sua ferramenta de construção (como Webpack ou Create React App) para processar arquivos CSS com a extensão `.module.css`. Isso geralmente é configurado automaticamente em muitas configurações modernas de projetos React.
+
+2. **Criando um arquivo CSS Module**: Crie um arquivo CSS com a extensão `.module.css` que contenha os estilos específicos para o seu componente. Por exemplo, `MeuComponente.module.css`:
+
+   ```css
+   /* MeuComponente.module.css */
+   .container {
+     background-color: #f0f0f0;
+     padding: 16px;
+   }
+   .title {
+     font-size: 24px;
+   }
+   ```
+
+3. **Importando estilos em um componente**: No seu componente React, você pode importar os estilos diretamente e usar as classes definidas no arquivo CSS Module:
+
+   ```jsx
+   import React from 'react';
+   import styles from './MeuComponente.module.css';
+
+   function MeuComponente() {
+     return (
+       <div className={styles.container}>
+         <h1 className={styles.title}>Meu Componente</h1>
+       </div>
+     );
+   }
+
+   export default MeuComponente;
+   ```
+
+4. **Uso das classes CSS**: Dentro do componente, você pode usar as classes importadas `styles` como qualquer outra classe CSS.
+
+Dessa forma, os estilos definidos no arquivo CSS Module são aplicados apenas ao componente `MeuComponente` e não afetam outros componentes. Isso ajuda a manter a organização e o isolamento de estilos em projetos React maiores, tornando mais fácil a manutenção e evitando conflitos de nomes de classe globais.

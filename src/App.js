@@ -3,6 +3,7 @@ import HelloWorld from "./components/HelloWorld";
 import SayMyName from "./components/SayMyName";
 import Pessoa from "./components/Pessoa";
 import Fruta from "./components/Fruta";
+import Frase from "./components/Frase";
 
 function App() {
   const nome = "Daniel"
@@ -48,6 +49,7 @@ function App() {
       melancia = {melancia}
       />
 
+      <Frase/>
     </div>
   );
 }
