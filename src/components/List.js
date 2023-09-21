@@ -10,11 +10,13 @@ function List(){
             </ul>
 
             <br />
-            
+
             <h1>Minha Lista de Carros</h1>
             <ul>
-                <Item marca="Ferrari"/>
-                <Item marca="Porsche"/>
+                <Item marca="Ferrari" ano_lancamento={1985}/> 
+                <Item marca="Fiat" ano_lancamento={1964}/>
+                <Item marca="Renault" ano_lancamento={1999}/>
+                <Item/>
             </ul>
         </>
     )

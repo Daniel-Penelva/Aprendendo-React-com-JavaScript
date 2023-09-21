@@ -360,3 +360,59 @@ Essa forma é útil quando você precisa passar atributos para o fragmento.
 Embora os React Fragments sejam muito úteis, é importante observar que eles não possuem nenhum tipo de chave ou propriedades, o que pode ser um problema se você precisar mapear uma lista de elementos dentro de um fragmento. Nesse caso, você ainda precisará de um elemento contêiner com chaves únicas.
 
 Em resumo, os React Fragments são uma maneira útil de renderizar múltiplos elementos adjacentes sem adicionar elementos de contêiner desnecessários ao DOM. Eles melhoram a legibilidade do código e mantêm a estrutura do DOM mais limpa e semântica.
+
+# Tipos (tipagem) para as props
+Uma prática recomendada ao trabalhar com React é definir tipos (tipagem) para as props de seus componentes. Isso ajuda a melhorar a robustez, a legibilidade do código e a capacidade de detecção de erros em seu aplicativo, especialmente em projetos maiores.
+
+Existem várias maneiras de adicionar tipagem às props em componentes React. Duas das maneiras mais comuns são:
+
+1. **PropTypes**: PropTypes é uma biblioteca JavaScript amplamente usada para adicionar tipagem às props de seus componentes React. Ela permite definir os tipos esperados para cada prop e pode ser usada para verificar automaticamente as props em tempo de desenvolvimento.
+
+   Exemplo de uso de PropTypes:
+
+   ```jsx
+   import React from 'react';
+   import PropTypes from 'prop-types';
+
+   function MeuComponente(props) {
+     return <div>{props.texto}</div>;
+   }
+
+   MeuComponente.propTypes = {
+     texto: PropTypes.string.isRequired,
+   };
+
+   export default MeuComponente;
+   ```
+
+   Neste exemplo, estamos definindo que a prop "texto" deve ser uma string (`PropTypes.string`) e é obrigatória (`isRequired`).
+
+2. **TypeScript**: TypeScript é uma linguagem que estende o JavaScript adicionando recursos de tipagem estática. Ao usar TypeScript com React, você pode definir interfaces para as props dos seus componentes.
+
+   Exemplo de uso de TypeScript com React:
+
+   ```tsx
+   import React from 'react';
+
+   interface MeuComponenteProps {
+     texto: string;
+   }
+
+   const MeuComponente: React.FC<MeuComponenteProps> = ({ texto }) => {
+     return <div>{texto}</div>;
+   };
+
+   export default MeuComponente;
+   ```
+
+   Neste exemplo, usamos uma interface chamada `MeuComponenteProps` para definir o tipo esperado para a prop "texto".
+
+   **Observação**: Quando você usa TypeScript com React, não é estritamente necessário usar PropTypes, pois o TypeScript já fornece tipagem estática.
+
+A vantagem de adicionar tipagem às props é que isso:
+
+- Ajuda a documentar como os componentes devem ser usados, tornando o código mais legível e autoexplicativo.
+- Facilita a detecção de erros em tempo de desenvolvimento, já que muitos erros relacionados a props incorretas podem ser identificados pelo linter ou pelo compilador TypeScript.
+- Melhora a manutenção do código, pois evita erros relacionados à tipagem.
+
+No geral, a escolha entre PropTypes e TypeScript depende das necessidades do seu projeto e das preferências da equipe de desenvolvimento. Ambas as abordagens fornecem benefícios significativos em termos de manutenção e qualidade do código em projetos React.
