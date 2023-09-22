@@ -416,3 +416,176 @@ A vantagem de adicionar tipagem às props é que isso:
 - Melhora a manutenção do código, pois evita erros relacionados à tipagem.
 
 No geral, a escolha entre PropTypes e TypeScript depende das necessidades do seu projeto e das preferências da equipe de desenvolvimento. Ambas as abordagens fornecem benefícios significativos em termos de manutenção e qualidade do código em projetos React.
+
+# Eventos em React
+
+Eventos em React são a maneira como você lida com a interação do usuário em componentes React. Você pode ouvir (ou "ouvir") eventos, como cliques de mouse, pressionamentos de teclas e muito mais, e executar funções ou métodos específicos quando esses eventos ocorrem. 
+
+Conceitos fundamentais sobre como trabalhar com eventos em React:
+
+## Lidando com Eventos em Componentes Funcionais:
+
+Em componentes funcionais, você pode usar a sintaxe de eventos diretamente no JSX usando atributos como `onClick`, `onMouseOver`, `onKeyPress`, entre outros. Esses atributos recebem uma função que será executada quando o evento ocorrer.
+
+Exemplo de lidar com um evento de clique em um componente funcional:
+
+```jsx
+import React from 'react';
+
+function MeuComponente() {
+  const handleClick = () => {
+    alert('Clique aconteceu!');
+  };
+
+  return (
+    <button onClick={handleClick}>Clique em mim</button>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, quando o botão é clicado, a função `handleClick` é chamada, exibindo um alerta.
+
+## Lidando com Eventos em Componentes de Classe:
+
+Em componentes de classe, você define métodos para lidar com eventos. Esses métodos são anexados ao elemento JSX usando a sintaxe `this.nomeDoMetodo`.
+
+Exemplo de lidar com um evento de clique em um componente de classe:
+
+```jsx
+import React, { Component } from 'react';
+
+class MeuComponente extends Component {
+  handleClick() {
+    alert('Clique aconteceu!');
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>Clique em mim</button>
+    );
+  }
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, quando o botão é clicado, o método `handleClick` é chamado e exibe um alerta.
+
+## Passando Argumentos para Manipuladores de Eventos:
+
+Às vezes, você precisa passar argumentos personalizados para o manipulador de eventos. Em vez de chamar a função diretamente no JSX, você pode usar uma função anônima ou arrow function para envolver a chamada do seu método com os argumentos desejados.
+
+Exemplo de passagem de argumentos para um manipulador de eventos:
+
+```jsx
+import React from 'react';
+
+function MeuComponente() {
+  const handleCliqueComArgumento = (mensagem) => {
+    alert(mensagem);
+  };
+
+  return (
+    <button onClick={() => handleCliqueComArgumento('Olá, Mundo!')}>Clique em mim</button>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, estamos usando uma função arrow dentro de `onClick` para passar o argumento `'Olá, Mundo!'` para a função `handleCliqueComArgumento`.
+
+Lidar com eventos em React é fundamental para criar interações dinâmicas em aplicativos web. 
+
+Explicando os eventos `onClick`, `onChange` e `onSubmit` no contexto do React.
+
+## `onClick`
+
+O evento `onClick` é acionado quando um elemento é clicado. É comumente usado para lidar com cliques do mouse em elementos, como botões e links.
+
+Exemplo de uso do `onClick` em um botão:
+
+```jsx
+import React from 'react';
+
+function MeuComponente() {
+  const handleClick = () => {
+    alert('Clique aconteceu!');
+  };
+
+  return (
+    <button onClick={handleClick}>Clique em mim</button>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, quando o botão é clicado, a função `handleClick` é chamada, exibindo um alerta.
+
+## `onChange`
+
+O evento `onChange` é comumente usado com elementos de entrada, como `<input>` e `<textarea>`. Ele é acionado quando o valor de um elemento de entrada é alterado pelo usuário.
+
+Exemplo de uso do `onChange` com um campo de entrada de texto:
+
+```jsx
+import React, { useState } from 'react';
+
+function MeuComponente() {
+  const [texto, setTexto] = useState('');
+
+  const handleChange = (event) => {
+    setTexto(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={texto} onChange={handleChange} />
+      <p>Você digitou: {texto}</p>
+    </div>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, o estado `texto` é atualizado à medida que o usuário digita no campo de entrada. A função `handleChange` é chamada quando o evento `onChange` é acionado, atualizando o estado com o valor digitado.
+
+## `onSubmit`
+
+O evento `onSubmit` é usado principalmente em formulários (`<form>`) e é acionado quando o formulário é submetido. Ele é frequentemente usado para processar os dados do formulário antes de enviá-los para um servidor ou realizar outras ações relacionadas ao envio do formulário.
+
+Exemplo de uso do `onSubmit` em um formulário:
+
+```jsx
+import React, { useState } from 'react';
+
+function MeuComponente() {
+  const [nome, setNome] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Nome submetido: ${nome}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      />
+      <button type="submit">Enviar</button>
+    </form>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, o evento `onSubmit` é usado para interceptar o envio do formulário, evitar o comportamento padrão de recarregar a página (`event.preventDefault()`) e exibir um alerta com o nome submetido.
+
+Esses são eventos comuns em aplicativos React que permitem que você interaja com os usuários e processe os dados de entrada de forma reativa. Eles são uma parte fundamental da criação de aplicativos web interativos e responsivos.

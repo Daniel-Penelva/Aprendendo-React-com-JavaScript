@@ -5,6 +5,7 @@ import Pessoa from "./components/Pessoa";
 import Fruta from "./components/Fruta";
 import Frase from "./components/Frase";
 import List from "./components/List";
+import Evento from "./components/Evento";
 
 function App() {
   const nome = "Daniel"
@@ -53,6 +54,9 @@ function App() {
       <Frase/>
 
       <List/>
+
+      <h1>Testando Eventos </h1>
+      <Evento numero="1"/>
     </div>
   );
 }
