@@ -6,6 +6,8 @@ import Fruta from "./components/Fruta";
 import Frase from "./components/Frase";
 import List from "./components/List";
 import Evento from "./components/Evento";
+import Forms from "./components/Forms";
+
 
 function App() {
   const nome = "Daniel"
@@ -57,6 +59,11 @@ function App() {
 
       <h1>Testando Eventos </h1>
       <Evento numero="1"/>
+
+      <br />
+
+      <h2>Formulário</h2>
+      <Forms/>
     </div>
   );
 }

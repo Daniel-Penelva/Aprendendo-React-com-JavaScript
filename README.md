@@ -589,3 +589,79 @@ export default MeuComponente;
 Neste exemplo, o evento `onSubmit` é usado para interceptar o envio do formulário, evitar o comportamento padrão de recarregar a página (`event.preventDefault()`) e exibir um alerta com o nome submetido.
 
 Esses são eventos comuns em aplicativos React que permitem que você interaja com os usuários e processe os dados de entrada de forma reativa. Eles são uma parte fundamental da criação de aplicativos web interativos e responsivos.
+
+# useState
+
+O `useState` é um hook fundamental no React que permite que componentes funcionais gerenciem o estado. Com `useState`, você pode adicionar estado a um componente funcional sem a necessidade de converter o componente em uma classe. Ele é amplamente utilizado para armazenar e gerenciar dados que podem mudar ao longo do tempo, como dados de formulário, contadores, listas e muito mais.
+
+Principais conceitos sobre `useState` no React:
+
+## Uso Básico do `useState`:
+
+Para usar o `useState`, você deve importá-lo a partir do pacote React:
+
+```jsx
+import React, { useState } from 'react';
+```
+
+Em seguida, você pode declarar uma variável de estado e uma função para atualizá-la, como este:
+
+```jsx
+const [estado, setEstado] = useState(valorInicial);
+```
+
+- `estado`: É a variável de estado que conterá o valor atual.
+- `setEstado`: É uma função que permite atualizar o valor do estado.
+- `valorInicial`: É o valor inicial do estado.
+
+Aqui está um exemplo simples de uso do `useState`:
+
+```jsx
+import React, { useState } from 'react';
+
+function Contador() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Contagem: {count}</p>
+      <button onClick={increment}>Incrementar</button>
+    </div>
+  );
+}
+
+export default Contador;
+```
+
+Neste exemplo, estamos usando `useState` para declarar a variável `count` e a função `setCount` para atualizar o valor de `count`. O botão "Incrementar" aumenta o valor de `count` quando clicado.
+
+## Atualizando o Estado:
+
+Você atualiza o estado chamando a função que foi retornada pelo `useState`. No exemplo anterior, usamos `setCount(count + 1)` para incrementar o estado.
+
+Lembre-se de que o estado anterior não é mesclado com o novo estado; em vez disso, ele é substituído pelo novo valor.
+
+## Estado Complexo:
+
+Você pode usar `useState` para gerenciar estados mais complexos, como objetos e arrays. Por exemplo:
+
+```jsx
+const [pessoa, setPessoa] = useState({ nome: '', idade: 0 });
+const [lista, setLista] = useState([]);
+```
+
+## Funções no `useState`:
+
+Em alguns casos, você pode usar uma função para definir o estado com base no estado anterior. Isso é útil quando a nova versão do estado depende do valor anterior.
+
+```jsx
+setCount((prevCount) => prevCount + 1);
+```
+
+Isso garante que a atualização do estado seja segura, mesmo em situações concorrentes.
+
+O `useState` é uma ferramenta poderosa no React para gerenciar o estado dos componentes funcionais. Ele ajuda a criar componentes dinâmicos e interativos sem a necessidade de conversão em componentes de classe. É essencial para muitos aspectos da criação de aplicativos React, como gerenciar formulários, interações de usuário e muito mais.
