@@ -665,3 +665,83 @@ setCount((prevCount) => prevCount + 1);
 Isso garante que a atualização do estado seja segura, mesmo em situações concorrentes.
 
 O `useState` é uma ferramenta poderosa no React para gerenciar o estado dos componentes funcionais. Ele ajuda a criar componentes dinâmicos e interativos sem a necessidade de conversão em componentes de classe. É essencial para muitos aspectos da criação de aplicativos React, como gerenciar formulários, interações de usuário e muito mais.
+
+# Métodos por props
+
+Passar métodos como props é uma técnica comum no React para permitir a comunicação entre componentes, especialmente quando você deseja que um componente filho chame uma função definida em um componente pai. Isso permite que os componentes interajam e compartilhem dados de forma eficaz. 
+
+Como passar métodos por props no React:
+
+## Passando Métodos como Props do Pai para o Filho:
+
+1. **Defina um método no componente pai**: Primeiro, você deve definir a função que deseja passar no componente pai. Por exemplo:
+
+```jsx
+import React, { Component } from 'react';
+
+class Pai extends Component {
+  minhaFuncao = () => {
+    alert('Método chamado a partir do Pai');
+  };
+
+  render() {
+    return (
+      <Filho funcaoDoPai={this.minhaFuncao} />
+    );
+  }
+}
+
+export default Pai;
+```
+
+2. **Passe o método como uma prop**: No componente pai, você passa o método como uma prop para o componente filho (neste caso, o componente `Filho`).
+
+```jsx
+import React from 'react';
+
+function Filho(props) {
+  return (
+    <button onClick={props.funcaoDoPai}>Clique em Mim</button>
+  );
+}
+```
+
+Neste exemplo, quando o botão é clicado no componente `Filho`, a função `funcaoDoPai` definida no componente `Pai` é chamada.
+
+## Passando Métodos com Parâmetros:
+
+Você também pode passar métodos com parâmetros para componentes filhos. Por exemplo:
+
+```jsx
+import React, { Component } from 'react';
+
+class Pai extends Component {
+  minhaFuncao = (mensagem) => {
+    alert(`Método chamado a partir do Pai com a mensagem: ${mensagem}`);
+  };
+
+  render() {
+    return (
+      <Filho funcaoDoPai={this.minhaFuncao} />
+    );
+  }
+}
+```
+
+No componente filho (`Filho`), você pode chamar o método com os parâmetros apropriados:
+
+```jsx
+import React from 'react';
+
+function Filho(props) {
+  const mensagem = 'Olá, Mundo!';
+
+  return (
+    <button onClick={() => props.funcaoDoPai(mensagem)}>Clique em Mim</button>
+  );
+}
+```
+
+Ao passar a função `funcaoDoPai` com o parâmetro `mensagem`, o componente filho pode chamar a função com o valor apropriado.
+
+Passar métodos como props é uma prática comum no React e é fundamental para criar componentes reutilizáveis e modularizados. Isso permite que os componentes se comuniquem e interajam uns com os outros de maneira eficaz.
