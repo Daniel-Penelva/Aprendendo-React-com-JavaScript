@@ -745,3 +745,102 @@ function Filho(props) {
 Ao passar a função `funcaoDoPai` com o parâmetro `mensagem`, o componente filho pode chamar a função com o valor apropriado.
 
 Passar métodos como props é uma prática comum no React e é fundamental para criar componentes reutilizáveis e modularizados. Isso permite que os componentes se comuniquem e interajam uns com os outros de maneira eficaz.
+
+# Renderização condicional (if)
+A renderização condicional no React é uma técnica que permite que você controle o que é renderizado com base em uma condição ou conjunto de condições. Isso é útil para criar interfaces de usuário dinâmicas, onde você deseja mostrar ou ocultar elementos com base em estados, propriedades ou outros fatores.
+
+Existem várias maneiras de realizar renderização condicional no React, e vou explicar algumas delas:
+
+## 1. Operador Ternário
+
+Você pode usar o operador ternário para renderizar conteúdo com base em uma condição. Aqui está um exemplo simples:
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  const estaLogado = props.estaLogado;
+
+  return (
+    <div>
+      {estaLogado ? (
+        <p>Usuário está logado</p>
+      ) : (
+        <p>Usuário não está logado</p>
+      )}
+    </div>
+  );
+}
+
+export default MeuComponente;
+```
+
+Neste exemplo, o componente renderiza um parágrafo com base na condição `estaLogado`.
+
+## 2. Elemento `if` com retorno nulo (Null Return)
+
+Você pode usar uma declaração `if` dentro do corpo da função de renderização e retornar `null` quando não desejar renderizar nada. Aqui está um exemplo:
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  if (props.condicao) {
+    return <p>Renderizado se a condição for verdadeira</p>;
+  } else {
+    return null; // Nada é renderizado se a condição for falsa
+  }
+}
+
+export default MeuComponente;
+```
+
+Neste caso, o componente renderizará um parágrafo apenas se a `condicao` for verdadeira.
+
+## 3. Elemento Curto-Circuito (Short-Circuit)
+
+Você pode usar uma expressão de "curto-circuito" com `&&` para renderizar condicionalmente elementos. Isso é útil quando você deseja renderizar algo com base em uma condição.
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  return (
+    <div>
+      {props.condicao && <p>Renderizado se a condição for verdadeira</p>}
+    </div>
+  );
+}
+
+export default MeuComponente;
+```
+
+O parágrafo é renderizado apenas se `props.condicao` for verdadeira.
+
+## 4. Renderização Condicional com Variáveis
+
+Você também pode usar variáveis para armazenar elementos a serem renderizados condicionalmente:
+
+```jsx
+import React from 'react';
+
+function MeuComponente(props) {
+  let elemento = null;
+
+  if (props.condicao) {
+    elemento = <p>Renderizado se a condição for verdadeira</p>;
+  }
+
+  return (
+    <div>
+      {elemento}
+    </div>
+  );
+}
+
+export default MeuComponente;
+```
+
+Isso é útil quando você precisa de lógica mais complexa para determinar o que renderizar.
+
+Renderização condicional é uma técnica fundamental no React que permite que você crie interfaces de usuário dinâmicas e responsivas. Ela é usada para exibir ou ocultar elementos com base em uma variedade de fatores, como estados, props ou valores de variáveis. Essa flexibilidade é crucial para a criação de aplicativos React interativos e dinâmicos.

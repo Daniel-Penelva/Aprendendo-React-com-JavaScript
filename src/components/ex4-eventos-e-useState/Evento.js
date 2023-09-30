@@ -1,4 +1,4 @@
-import Button from "./evento/Button"
+import Button from "../ex5-metodos-por-props/Button"
 
 function Evento({ numero }){
 
