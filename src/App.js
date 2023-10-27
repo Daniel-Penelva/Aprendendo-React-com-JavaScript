@@ -1,19 +1,18 @@
 import "./App.css";
-import OutraLista from "./components/ex7-renderizacao-listas/OutraLista";
+import {useState} from 'react'
+import SeuNome from "./components/ex8-state-lift/SeuNome";
+import Saudacao from "./components/ex8-state-lift/Saudacao";
 
 
 function App() {
-
-  const meusItens = ['React', 'Vue', 'Angular']
  
+  const [nome, setNome] = useState()
+
   return (
     <div className="App">
-      <h1>Renderização de Listas</h1>
-
-      <OutraLista itens = {meusItens} />
-      
-      <h3> Lista Vazia</h3>
-      <OutraLista itens = {[]} />
+      <h1>State Lift</h1>
+      <SeuNome setNome={setNome}/>
+      <Saudacao nome = {nome}/>
     </div>
   );
 }

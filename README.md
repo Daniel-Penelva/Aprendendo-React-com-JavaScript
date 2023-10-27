@@ -931,3 +931,59 @@ export default ListaDeItens;
 Neste exemplo, o componente verifica se a matriz de dados `itens` está vazia e, se estiver, renderiza uma mensagem informando que a lista está vazia.
 
 Renderizar listas é uma tarefa comum em aplicativos React, e essas abordagens permitem que faça de maneira eficaz e organizada. Pode adaptar essas técnicas para atender às necessidades específicas do seu aplicativo e personalizar a renderização de listas conforme necessário.
+
+# State Lift
+
+"State lifting" é um conceito no React que se refere a elevar o estado de um componente para um ancestral comum compartilhado. Isso é útil quando você deseja que vários componentes compartilhem informações ou estado entre si. State lifting é uma forma de gerenciar o estado em aplicativos React, permitindo que componentes compartilhem dados e funcionem juntos de forma mais eficaz.
+
+Principais aspectos do "state lifting" no React:
+
+## Quando Usar "State Lifting":
+
+- **Compartilhamento de Estado**: State lifting é útil quando vários componentes precisam acessar e atualizar o mesmo estado. Ele permite que esses componentes compartilhem dados sem a necessidade de passar props entre vários níveis de componentes.
+
+- **Coordenação entre Componentes**: É comum usar state lifting quando você tem componentes que precisam coordenar suas ações com base no estado compartilhado.
+
+- **Reusabilidade**: State lifting também pode tornar seus componentes mais reutilizáveis, pois você pode ter um componente de nível superior que gerencia o estado e pode ser usado com vários componentes filhos.
+
+## Como Implementar "State Lifting":
+
+A implementação do "state lifting" envolve basicamente elevar o estado compartilhado para o componente ancestral mais alto que faz sentido no contexto da sua aplicação. Isso é geralmente feito no componente pai de todos os componentes que precisam acessar o estado compartilhado.
+
+Aqui está um exemplo simples:
+
+```jsx
+import React, { useState } from 'react';
+
+function App() {
+  const [contador, setContador] = useState(0);
+
+  const incrementar = () => {
+    setContador(contador + 1);
+  };
+
+  return (
+    <div>
+      <h1>Contador: {contador}</h1>
+      <BotaoIncrementar incrementar={incrementar} />
+      <BotaoReset reset={() => setContador(0)} />
+    </div>
+  );
+}
+
+function BotaoIncrementar({ incrementar }) {
+  return <button onClick={incrementar}>Incrementar</button>;
+}
+
+function BotaoReset({ reset }) {
+  return <button onClick={reset}>Reset</button>;
+}
+
+export default App;
+```
+
+Neste exemplo, o estado do contador é mantido no componente `App`, e os botões que interagem com esse estado são representados por componentes separados. Os métodos que atualizam o estado são passados como props para os componentes filhos.
+
+Isso é um exemplo simples de "state lifting" em ação. O estado é elevado para o componente `App`, que atua como um ancestral comum para os componentes que precisam acessar e modificar esse estado compartilhado.
+
+O "state lifting" é uma prática comum e eficaz para compartilhar dados e estado entre componentes no React. Ele ajuda a manter um código mais organizado e evita a necessidade de passar props por vários níveis de componentes.
