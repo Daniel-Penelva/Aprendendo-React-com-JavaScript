@@ -987,3 +987,239 @@ Neste exemplo, o estado do contador é mantido no componente `App`, e os botões
 Isso é um exemplo simples de "state lifting" em ação. O estado é elevado para o componente `App`, que atua como um ancestral comum para os componentes que precisam acessar e modificar esse estado compartilhado.
 
 O "state lifting" é uma prática comum e eficaz para compartilhar dados e estado entre componentes no React. Ele ajuda a manter um código mais organizado e evita a necessidade de passar props por vários níveis de componentes.
+
+# Router
+
+Em React, o "Router" se refere a uma parte fundamental de muitas aplicações web que permite a navegação entre diferentes páginas ou componentes, mantendo a interface do usuário sincronizada com a URL do navegador. Para implementar roteamento em aplicações React, vai ser preciso usar uma biblioteca popular chamada "React Router". 
+
+## Instalando o React Router:
+
+Para começar a usar o React Router em um projeto React, primeiro precisa instalá-lo. Você pode fazê-lo usando o npm ou o Yarn. Abra o terminal no diretório do seu projeto e execute um dos seguintes comandos:
+
+Com npm:
+
+```
+npm install react-router-dom
+```
+
+Com Yarn:
+
+```
+yarn add react-router-dom
+```
+
+## Configurando o React Router:
+
+Depois de instalar o React Router, você pode começar a configurar as rotas em sua aplicação. O React Router fornece vários componentes para criar roteamento no aplicativo. Os componentes principais incluem:
+
+- `BrowserRouter`: Fornece a funcionalidade de roteamento e deve ser usado como o componente de nível superior de sua aplicação. Geralmente, você o envolve em torno de todo o aplicativo.
+
+- `Route`: Define uma rota que associa um caminho de URL a um componente específico que será renderizado quando o caminho corresponder.
+
+- `Link`: Fornece links de navegação para navegar entre diferentes rotas sem recarregar a página.
+
+Exemplo simples de configuração de rotas usando o React Router:
+
+```jsx
+import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+function PaginaPrincipal() {
+  return <h1>Página Principal</h1>;
+}
+
+function PaginaSobre() {
+  return <h1>Página Sobre</h1>;
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <li><Link to="/">Página Principal</Link></li>
+          <li><Link to="/sobre">Página Sobre</Link></li>
+        </ul>
+      </nav>
+      <Route path="/" exact element={PaginaPrincipal} />
+      <Route path="/sobre" element={PaginaSobre} />
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+Neste exemplo, estamos definindo duas rotas, uma para a página principal (`"/"`) e outra para a página sobre (`"/sobre"`). Também estamos usando o componente `Link` para criar links de navegação entre as páginas.
+
+## Navegando com o React Router:
+
+O React Router gerencia a navegação em seu aplicativo automaticamente. Quando você clica nos links criados com o componente `Link`, a URL do navegador muda e o componente associado à rota correspondente é renderizado no lugar correto.
+
+O React Router também oferece recursos avançados, como parâmetros de URL, roteamento aninhado e navegação programática. Você pode personalizar ainda mais o comportamento de navegação de acordo com as necessidades do seu aplicativo.
+
+Em resumo, o React Router é uma biblioteca amplamente usada para adicionar funcionalidade de roteamento a aplicativos React. Ele permite que você crie aplicativos de página única (SPA) com várias rotas, tornando a experiência de navegação do usuário mais suave e eficiente. É uma ferramenta essencial para criar aplicativos da web complexos com várias páginas ou seções.
+
+## Link 
+O `Link` é um componente frequentemente associada ao React Router, uma biblioteca que permite a navegação entre diferentes "páginas" ou componentes em uma aplicação React de página única (SPA). O `Link` é um componente fornecido pelo React Router que permite criar links de navegação em sua aplicação.
+
+O React Router é uma biblioteca que simplifica o gerenciamento de rotas e a navegação em aplicativos React. Ele fornece vários componentes, incluindo `Link`, `Route`, `BrowserRouter`, entre outros, que facilitam a criação de aplicativos com várias páginas ou seções.
+
+Como pode usar o componente `Link` do React Router:
+
+```jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function Menu() {
+  return (
+    <ul>
+      <li><Link to="/">Página Inicial</Link></li>
+      <li><Link to="/sobre">Sobre</Link></li>
+      <li><Link to="/contato">Contato</Link></li>
+    </ul>
+  );
+}
+
+export default Menu;
+```
+
+No exemplo acima, o componente `Link` é importado do pacote `react-router-dom` e é usado para criar links de navegação para diferentes rotas. Os links são criados usando a propriedade `to`, que especifica para qual rota cada link deve levar.
+
+O componente `Link` oferece uma navegação suave entre as rotas em um aplicativo React, garantindo que a página não seja recarregada quando o usuário clica em um link. Em vez disso, o React Router manipula a navegação do lado do cliente e atualiza apenas a parte do aplicativo que precisa ser alterada com base na rota selecionada.
+
+O uso do componente `Link` é fundamental para criar aplicativos com várias páginas no React e é uma parte essencial do React Router, uma biblioteca amplamente usada para gerenciar a navegação e as rotas em aplicativos React.
+
+## Routes
+
+O componente `Routes` é uma parte fundamental do React Router versão 6, utilizado para definir o roteamento em uma aplicação React. Ele desempenha um papel semelhante ao antigo `Switch`, mas com uma abordagem mais flexível e expressiva.
+
+Principais conceitos e como usar o componente `Routes`:
+
+1. **Definição de Rotas**:
+   O componente `Routes` é usado para definir as rotas da sua aplicação. Você aninha as rotas dentro do componente `Routes` para criar a estrutura de roteamento da sua aplicação. Cada rota é definida usando o componente `<Route>`.
+
+2. **Nesting (Aninhamento)**:
+   Você pode aninhar rotas dentro de outras rotas para criar uma hierarquia de roteamento. Isso é útil quando você tem rotas que dependem do contexto de outras rotas.
+
+3. **Atributos Principais**:
+   - `path`: O atributo `path` especifica o caminho da URL que corresponderá a uma rota. Por exemplo, `path="/sobre"` corresponde à URL "/sobre".
+   - `element`: O atributo `element` especifica o componente que deve ser renderizado quando a rota é correspondida. Você fornece o componente que será renderizado quando a URL corresponder à rota.
+
+4. **Rota Padrão (Fallback Route)**:
+   Você pode definir uma rota padrão usando `*` como `path` em uma rota para criar um comportamento semelhante a um "caso padrão" em uma instrução `switch`. Essa rota padrão é correspondida se nenhuma outra rota corresponder à URL.
+
+5. **Redirecionamento (Redirect)**:
+   O React Router versão 6 possui um componente `useNavigate` que permite redirecionar programaticamente para outras rotas. O `useNavigate` pode ser usado para criar botões, links ou lógica de redirecionamento personalizada.
+
+6. **Captura de Parâmetros (Route Parameters)**:
+   O React Router versão 6 suporta a captura de parâmetros da URL. Você pode definir parâmetros nas rotas usando colchetes, por exemplo, `path="/produto/:id"`. Esses parâmetros podem ser acessados dentro do componente por meio de `useParams`.
+
+Exemplo de como usar o componente `Routes` em uma aplicação React:
+
+```jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<PaginaPrincipal />} />
+        <Route path="/sobre" element={<PaginaSobre />} />
+        <Route path="/contato" element={<PaginaContato />} />
+        <Route path="/produto/:id" element={<DetalhesDoProduto />} />
+        <Route path="*" element={<PaginaNaoEncontrada />} />
+      </Routes>
+    </Router>
+  );
+}
+```
+
+Neste exemplo, o componente `Routes` envolve várias rotas, cada uma com seu próprio caminho e componente a ser renderizado. O `*` em `path` é usado para criar uma rota padrão que será correspondida se nenhuma outra rota corresponder à URL.
+
+O componente `Routes` oferece uma maneira flexível e expressiva de definir o roteamento em aplicativos React, permitindo que você crie uma estrutura de navegação eficiente e dinâmica.
+
+## Route 
+
+O componente `Route` é uma parte fundamental do React Router, mais especificamente, do pacote `react-router-dom`. Ele é usado para definir como um componente deve ser renderizado com base na localização atual da URL. O `Route` permite que você associe componentes a caminhos específicos da URL e, quando a URL corresponde a um desses caminhos, o componente associado é renderizado.
+
+Como pode usar o componente `Route` no React Router:
+
+```jsx
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <div>
+      <h1>Minha Aplicação</h1>
+      <Route exact path="/" element={PaginaPrincipal} />
+      <Route path="/sobre" element={PaginaSobre} />
+      <Route path="/contato" element={PaginaContato} />
+    </div>
+  );
+}
+
+function PaginaPrincipal() {
+  return <h2>Página Principal</h2>;
+}
+
+function PaginaSobre() {
+  return <h2>Sobre Nós</h2>;
+}
+
+function PaginaContato() {
+  return <h2>Contate-nos</h2>;
+}
+
+export default App;
+```
+
+Neste exemplo, estamos usando o componente `Route` para associar componentes a caminhos específicos:
+
+- O `Route` com `path="/"`, usando `exact`, corresponde à URL raiz da aplicação. Quando a URL é a raiz, o componente `PaginaPrincipal` é renderizado.
+
+- O `Route` com `path="/sobre"` corresponde à URL "/sobre". Quando a URL é "/sobre", o componente `PaginaSobre` é renderizado.
+
+- O `Route` com `path="/contato"` corresponde à URL "/contato". Quando a URL é "/contato", o componente `PaginaContato` é renderizado.
+
+O componente `Route` é flexível e pode ser configurado de várias maneiras. Além de `path` e `element`, ele suporta outras props, como `render` e `children`, que permitem diferentes abordagens para renderizar conteúdo condicionalmente com base na URL.
+
+O React Router também permite a passagem de parâmetros na URL e a captura desses parâmetros nos componentes associados às rotas, o que é útil para a criação de páginas dinâmicas.
+
+Em resumo, o componente `Route` do React Router é uma ferramenta essencial para a criação de aplicativos de página única (SPA) e gerenciamento de rotas. Ele permite que associe componentes a URLs específicas e é uma parte fundamental do roteamento no React.
+
+### Bom saber: propriedade exact
+
+A propriedade `exact` é usada no componente `Route` do React Router para especificar que a correspondência de rota deve ser exata. Ela é comumente usada quando você deseja que um determinado componente seja renderizado somente quando a URL corresponder exatamente ao caminho especificado na rota.
+
+A utilização do `exact` evita que o componente seja renderizado quando a URL contém o caminho especificado como parte de uma URL mais longa. Sem o `exact`, o React Router tentaria corresponder a rota parcialmente e renderizar o componente associado se o caminho especificado estiver incluído em qualquer lugar da URL.
+
+Exemplo para ilustrar a diferença entre `exact` e a ausência de `exact`:
+
+```jsx
+import React from 'react';
+import { Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <div>
+      <h1>Minha Aplicação</h1>
+      <Route exact path="/" element={PaginaPrincipal} />
+      <Route path="/sobre" element={PaginaSobre} />
+    </div>
+  );
+}
+
+function PaginaPrincipal() {
+  return <h2>Página Principal</h2>;
+}
+
+function PaginaSobre() {
+  return <h2>Sobre Nós</h2>;
+}
+```
+
+No exemplo acima, quando a URL é "/" (a raiz da aplicação), o componente `PaginaPrincipal` será renderizado porque usamos `exact`. Sem `exact`, se a URL for "/sobre", o React Router tentará corresponder a ambos os caminhos, resultando na renderização de ambos `PaginaPrincipal` e `PaginaSobre`, o que pode não ser o comportamento desejado.
+
+Portanto, a propriedade `exact` é útil quando você deseja ter controle sobre a renderização de componentes com base na correspondência exata do caminho da URL. Isso garante que apenas o componente associado à rota cujo caminho corresponde exatamente à URL será renderizado, evitando renderizações indesejadas.
