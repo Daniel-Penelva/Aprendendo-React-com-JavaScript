@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Empresa from "./pages/Empresa";
 import Contato from "./pages/Contato";
 import Navbar from "./components/ex9-router/Navbar";
-import Footer from "./components/ex9-router/Footer";
+import Rodape from "./components/ex10-icons/Rodape";
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
             <Route path="/empresa" element = {<Empresa />}/>
             <Route path="/contato" element= {<Contato />} />  
         </Routes>
-        <Footer />
+        <Rodape />
       </Router>
     </div>
   );

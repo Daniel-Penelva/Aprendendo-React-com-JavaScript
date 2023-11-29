@@ -1223,3 +1223,10 @@ function PaginaSobre() {
 No exemplo acima, quando a URL é "/" (a raiz da aplicação), o componente `PaginaPrincipal` será renderizado porque usamos `exact`. Sem `exact`, se a URL for "/sobre", o React Router tentará corresponder a ambos os caminhos, resultando na renderização de ambos `PaginaPrincipal` e `PaginaSobre`, o que pode não ser o comportamento desejado.
 
 Portanto, a propriedade `exact` é útil quando você deseja ter controle sobre a renderização de componentes com base na correspondência exata do caminho da URL. Isso garante que apenas o componente associado à rota cujo caminho corresponde exatamente à URL será renderizado, evitando renderizações indesejadas.
+
+# Icons React
+O React Icons é uma biblioteca que oferece ícones populares prontos para uso em projetos React. Ele facilita a incorporação de ícones de diferentes conjuntos de ícones em componentes React.
+
+É preciso instalar o icons - comando: `npm install react-icons`
+
+Link para acessar a página [React Icons](https://react-icons.github.io/react-icons/)
